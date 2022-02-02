@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Insert new User</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/users}" th:object="${user}">
+
+  <input placeholder="Name" type="text" th:field ="*{name}" id="name"/>
+  <div  style="color: crimson" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name errors</div>
+  <br/>
+  <input placeholder="LastName" type="text" th:field ="*{lastName}"/>
+  <div  style="color: crimson" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name errors</div>
+  <br/>
+  <input placeholder="Email" type="text" th:field ="*{email}" id="email"/>
+  <div  style="color: crimson" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name errors</div>
+  <br/>
+  <input placeholder="Age" type="number" th:field ="*{age}" id="age"/>
+  <div  style="color: crimson" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name errors</div>
+  <br/>
+  <input type="submit" value="Create new!"/>
+
+</form>
+</body>
+</html>
