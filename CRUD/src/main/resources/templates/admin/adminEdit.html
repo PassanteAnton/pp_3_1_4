@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div div th:each="user: ${user}">
+        <h1>Редактирование пользователя: </h1>
+        <h1 th:text="*{user.getUserName()}"></h1>
+    </div>
+
+    <form th:method="PATCH" th:action="@{/admin/{id}(id=${user.getId()})}" th:object="${user}">
+
+        <input placeholder="Name" type="text" th:field ="*{name}" id="name"/>
+        <div  style="color: crimson" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name errors</div>
+        <br/>
+        <input placeholder="LastName" type="text" th:field ="*{lastName}"/>
+        <div  style="color: crimson" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name errors</div>
+        <br/>
+        <input placeholder="Email" type="text" th:field ="*{email}" id="email"/>
+        <div  style="color: crimson" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name errors</div>
+        <br/>
+        <input placeholder="Age" type="number" th:field ="*{age}" id="age"/>
+        <div  style="color: crimson" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name errors</div>
+        <br/>
+        <input type="submit" value="Update !"/>
+    </form>
+    <form th:method="DELETE" th:action="@{/admin/{id}(id=${user.getId()})}">
+        <input type="submit" value="Delete!"/>
+    </form>
+    <br/>
+    <hr/>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Выйти"></input>
+    </form>
+
+</body>
+</html>

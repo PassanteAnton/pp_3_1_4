@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head >
+<body>
+<div div th:each="user1: ${user}">
+    <h1>Привет: </h1>
+    <h1 th:text="*{user.getName()}"></h1>
+</div>
+<div>
+    <form th:method="GET" th:action="@{/edit/{id}(id=${user.getId()})}">
+        <input type="submit" value="Редактировать данные"/>
+    </form>
+</div>
+<form th:method="DELETE" th:action="@{/user/{id}(id=${user.getId()})}">
+    <input type="submit" value="Самовыпилиться"/>
+</form>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Выйти"></input>
+</form>
+</body>
+</html>

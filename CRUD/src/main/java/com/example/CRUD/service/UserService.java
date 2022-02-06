@@ -5,9 +5,10 @@ import com.example.CRUD.models.User;
 import java.util.List;
 
 public interface UserService {
-    void saveUser(User user);
+    boolean saveUser(User user);
     List<User> getAllUser();
-    User getUser(Long id);
-    void updateUser( User user);
-    void deleteUser(User user);
+    User findById(Long id);
+    boolean updateUser( User user);
+    boolean deleteUser(Long ID);
+    List<User> userGtList(Long idMin);
 }

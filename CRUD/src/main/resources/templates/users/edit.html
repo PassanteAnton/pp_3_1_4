@@ -3,11 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Update User</title>
+    <title></title>
 </head>
 <body>
-<form th:method="PATCH" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
+<div th:each="use: ${user}">
+    <h1>Редактирование пользователя:</h1>
+    <a th:text="${use.getName()}"></a>
+</div>
 
+<form th:method="PATCH" th:action="@{/user/{id}(id=${user.getId()})}" th:object="${user}">
     <input placeholder="Name" type="text" th:field ="*{name}" id="name"/>
     <div  style="color: crimson" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name errors</div>
     <br/>
@@ -21,7 +25,10 @@
     <div  style="color: crimson" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name errors</div>
     <br/>
     <input type="submit" value="Update !"/>
-
 </form>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Выйти"></input>
+</form>
+
 </body>
 </html>
