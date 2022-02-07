@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
-
+import java.util.StringJoiner;
 @Entity
 @Table(name = "t_user")
 public class User implements UserDetails {
@@ -30,6 +30,12 @@ public class User implements UserDetails {
     private String passwordConfirm;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
+
+    public String getRolesString(){
+        StringJoiner joiner = new StringJoiner(" ");
+        roles.forEach(x -> joiner.add(x.getSimpleName()));
+        return joiner.toString();
+    }
 
     public String getUserName() {
         return userName;

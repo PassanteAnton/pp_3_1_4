@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+
 @Controller
 @RequestMapping("/")
 public class UserController {
@@ -22,7 +24,7 @@ public class UserController {
 
     @GetMapping("/user")
     public String welcomeUser(Authentication authentication, Model model){
-        model.addAttribute("user", (User)authentication.getPrincipal());
+        model.addAttribute("user", authentication.getPrincipal());
         return "users/welcomeUser";
     }
     @GetMapping("edit/{id}")

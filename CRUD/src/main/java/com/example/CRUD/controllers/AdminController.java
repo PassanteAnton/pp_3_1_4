@@ -2,6 +2,7 @@ package com.example.CRUD.controllers;
 
 import com.example.CRUD.models.User;
 import com.example.CRUD.service.UserService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +14,9 @@ public class AdminController {
 
 
     @GetMapping()
-    public String getAll(Model model) {
+    public String getAll(Model model, Authentication authentication) {
         model.addAttribute("users", userService.getAllUser());
+
         return "admin/admin";
 
     }
