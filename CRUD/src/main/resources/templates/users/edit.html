@@ -10,7 +10,6 @@
     <h1>Редактирование пользователя:</h1>
     <a th:text="${use.getName()}"></a>
 </div>
-
 <form th:method="PATCH" th:action="@{/user/{id}(id=${user.getId()})}" th:object="${user}">
     <input placeholder="Name" type="text" th:field ="*{name}" id="name"/>
     <div  style="color: crimson" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name errors</div>

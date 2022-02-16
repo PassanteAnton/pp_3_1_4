@@ -45,7 +45,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .permitAll()
                 .and()
-                .exceptionHandling();
+                .exceptionHandling()
+                .and().httpBasic();
+                httpSecurity.csrf().disable();
     }
     @Autowired
     protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

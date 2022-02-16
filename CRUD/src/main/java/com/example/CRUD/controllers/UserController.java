@@ -19,13 +19,16 @@ public class UserController {
 
     @GetMapping()
     public String getUserById() {
-        return "users/welcome";
+        return "redirect:/login";
     }
 
     @GetMapping("/user")
     public String welcomeUser(Authentication authentication, Model model){
-        model.addAttribute("user", authentication.getPrincipal());
-        return "users/welcomeUser";
+        User userAunt = (User)authentication.getPrincipal();
+        model.addAttribute("user", userService.findById(userAunt.getId()));
+
+
+        return "users/userInfo";
     }
     @GetMapping("edit/{id}")
     public String editUserForm(Model model, @PathVariable("id") long id, Authentication authentication){
@@ -37,7 +40,7 @@ public class UserController {
         }
         return "users/edit";
     }
-    @PatchMapping("user/{id}")
+    @PatchMapping("user/edit")
     public String editUser(@ModelAttribute ("user") User user, Authentication authentication){
 
         User userAuthentication = (User) authentication.getPrincipal();

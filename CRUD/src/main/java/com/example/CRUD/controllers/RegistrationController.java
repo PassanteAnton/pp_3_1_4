@@ -37,7 +37,6 @@ public class RegistrationController {
             model.addAttribute("userNameError", "Такой пользователь уже существует");
             return "users/registration";
         }
-        System.out.println(userForm);
         return "redirect:/";
     }
 

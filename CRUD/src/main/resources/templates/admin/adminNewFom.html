@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <title>Bootstrap 4 Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse bg-dark navbar-dark">
+    <a class="navbar-brand" th:text="${currenUser.getEmail()}+ ' with roles: ' + ${currenUser.getRolesString()}" href="#">${currenUser.getEmail()}+ ' with rolls: ' + ${currenUser.getRolesString()}</a>
+
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="/logout" methods="post"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+    </div>
+</nav>
+
+
+<div class="row" style="margin-top:20px">
+    <div class="col-md-2">
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Admin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/user">User</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-sm-10 bg-light" style="margin-top:1px">
+        <div class="container" style="margin: 1px">
+            <h2>Admin Penal</h2>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">Users table</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/admin/new">New User</a>
+                </li>
+            </ul>
+            <div class="container bg-white " style="margin:5px" >
+                <div class="row gx-5 bg-light border " style=" margin-inside: 5px">
+                    <div class="col">
+                        <div class="p-3 bg-light">Add new User</div>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-sm-4"></div>
+                    <div class="col text-center">
+                        <form  style="max-width: 300px;" th:method="POST" th:action="@{/admin/addNew}" th:object="${userForm}" >
+                            <div class="form-group">
+                                <label for="Input1">Name</label>
+                                <input type="text" class="form-control bg-warning" id="Input1" placeholder="Name" th:field ="*{name}">
+                                <label for="Input2">Last Name</label>
+                                <input type="text" class="form-control bg-warning" id="Input2" placeholder="Last Name" th:field="*{lastName}">
+                                <label for="Input3">Age</label>
+                                <input type="text" class="form-control" id="Input3" placeholder="Age" th:field ="*{age}">
+                                <label for="Input4">Email</label>
+                                <input type="text" class="form-control bg-warning" id="Input4" placeholder="Email" th:field ="*{email}">
+                                <label for="Input5">User Name</label>
+                                <input type="text" class="form-control bg-warning" id="Input5" placeholder="User Name" th:field ="*{userName}">
+                                <div  style="color: crimson" th:each="problem: ${userNameError}">
+                                    <a th:text="${problem}"></a>
+                                </div>
+                                <label for="Input6">Password</label>
+                                <input type="text" class="form-control" id="Input6" placeholder="Password" th:field ="*{password}">
+                            </div>
+                            <div class="form-group">
+                                <label for="sel2">Role</label>
+                                <select multiple class="form-control" id="sel2" name="sellist2" th:field ="*{passwordConfirm}">
+                                    <option th:each="i : ${roles}" th:value="${i.getSimpleName()}" th:text="${i.getSimpleName()}">
+                                </select>
+                            </div>
+                            <br/>
+                            <input type="submit" class="btn btn-success" value="Add new User"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

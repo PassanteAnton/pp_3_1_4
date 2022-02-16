@@ -16,6 +16,7 @@
     <input placeholder="Age" type="text" th:field ="*{age}" id="age"/>
     <br/>
     <input placeholder="User Name" type="text" th:field ="*{userName}" id="userName"/>
+    <p th:if="${userNameError}" class="error">Wrong user or password</p>
     <br/>
     <input placeholder="Password" type="text" th:field ="*{password}" id="password"/>
     <br/>
