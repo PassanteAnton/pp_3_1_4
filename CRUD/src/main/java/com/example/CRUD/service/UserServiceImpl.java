@@ -72,8 +72,6 @@ public class UserServiceImpl implements UserService,UserDetailsService{
         }
         return false;
     }
-
-
         public boolean deleteUser(Long id) {
             if(userRepository.findById(id).isPresent()) {
                 userRepository.deleteById(id);
@@ -95,17 +93,15 @@ public class UserServiceImpl implements UserService,UserDetailsService{
         return em.createQuery("SELECT u FROM User u WHERE u.id > :paramId", User.class)
                 .setParameter("paramId", idMin).getResultList();
     }
-
     public UserServiceImpl(EntityManager em, RoleService roleService, CustomUserRepository userRepository) {
         this.em = em;
         this.roleService = roleService;
         this.userRepository = userRepository;
     }
-
-
     protected Set<Role> getSetRole(String rolesStr){
+
         Set<Role> roles = new HashSet<>();
-        if(rolesStr!= null){
+        if(rolesStr != null){
             String[]rolesString = rolesStr.split(",");
             for (int i = 0; i < rolesString.length; i++) {
                 for(Role role: roleService.getAllRoles()){
@@ -117,8 +113,6 @@ public class UserServiceImpl implements UserService,UserDetailsService{
         }else  roles.add(new Role(1L, "ROLE_USER"));
         return roles;
     }
-
-
         @Autowired
     public void setbCryptPasswordEncoder(BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;

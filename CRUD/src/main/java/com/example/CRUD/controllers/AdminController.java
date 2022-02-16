@@ -24,7 +24,7 @@ public class AdminController {
         model.addAttribute("currenUser", (User)authentication.getPrincipal());
         model.addAttribute("users", userService.getAllUser());
         model.addAttribute("roles", roleService.getAllRoles());
-        return "admin/adminPenel";
+        return "admin/adminWithJS";
 
     }
 
